@@ -1,0 +1,37 @@
+{
+  "name": "ts-jest-slow",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=6.10"
+  },
+  "scripts": {
+    "start": "npm run compile && node build/app.js",
+    "build": "npm run compile && cp config.json build",
+    "compile": "rm -rf ./build && tsc -p tsconfig-prod.json --diagnostics --pretty",
+    "compile:watch": "rm -rf ./build && tsc -p tsconfig.json --watch",
+    "test": "jest --forceExit --verbose"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "@types/jest": "^20.0.5",
+    "ts-jest": "^20.0.7",
+    "typescript": "^2.4.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js", "ts"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/build/"
+    ]
+  },
+  "dependencies": {
+    "@kwonoj/rxjs-testscheduler-compat": "^1.0.2",
+    "rxjs": "^5.4.2"
+  }
+}
